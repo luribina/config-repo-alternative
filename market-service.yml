@@ -1,0 +1,13 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${discovery.url}
+
+spring:
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  data:
+    web:
+      pageable:
+        default-page-size: 50
+
