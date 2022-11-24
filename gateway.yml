@@ -27,6 +27,12 @@ spring:
             - UserRole=ROLE_ADMIN, ROLE_MAINTAINER, ROLE_TRADER
           predicates:
             - Path=/instrument/**
+        - id: market-service-docs
+          uri: 'lb://MARKET-SERVICE'
+          predicates:
+            - Path=/market/v3/api-docs
+          filters:
+            - RewritePath=/market/v3/api-docs, /v3/api-docs
         - id: market-service-create
           uri: 'lb://MARKET-SERVICE'
           filters:
