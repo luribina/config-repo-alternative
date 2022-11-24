@@ -58,12 +58,18 @@ spring:
             - UserRole=ROLE_ADMIN, ROLE_MAINTAINER, ROLE_TRADER
           predicates:
             - Path=/portfolio/**
-        - id: portfolio-service
+        - id: order-service
           uri: 'lb://ORDER-SERVICE'
           filters:
             - UserRole=ROLE_ADMIN, ROLE_MAINTAINER, ROLE_TRADER
           predicates:
             - Path=/order/**
+        - id: openapi
+          uri: http://localhost:9000
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
 
 jwt:
   secret: "SS1GVUNLSU5HLUxPVkUtU1BSSU5HLUFORC1IT1ctSVQtSVMtTElURVJBTExZLU1BR0lDQUxMWS1XT1JLUy1BTkQtRkFJTFMtV0lUSC1DUllQVElELUVYQ0VQVElPTlM="
