@@ -53,11 +53,11 @@ spring:
           predicates:
             - Path=/trade/**
         - id: trade-service-docs
-            uri: 'lb://TRADE-SERVICE'
-            filters:
-              - UserRole=
-            predicates:
-              - Path=/v3/api-docs/**
+          uri: 'lb://TRADE-SERVICE'
+          filters:
+            - UserRole=
+          predicates:
+            - Path=/v3/api-docs/**
         - id: portfolio-service
           uri: 'lb://TRADE-SERVICE'
           filters:
