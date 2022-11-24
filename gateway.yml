@@ -52,6 +52,12 @@ spring:
             - UserRole=ROLE_ADMIN, ROLE_MAINTAINER, ROLE_TRADER
           predicates:
             - Path=/trade/**
+        - id: trade-service-docs
+            uri: 'lb://TRADE-SERVICE'
+            filters:
+              - UserRole=
+            predicates:
+              - Path=/v3/api-docs/**
         - id: portfolio-service
           uri: 'lb://TRADE-SERVICE'
           filters:
