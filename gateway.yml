@@ -52,12 +52,12 @@ spring:
             - UserRole=ROLE_ADMIN, ROLE_MAINTAINER, ROLE_TRADER
           predicates:
             - Path=/marketInstrumentId/**
-        - id: trade-service-docs
+        - id: market-service-docs
           uri: 'lb://TRADE-SERVICE'
-          filters:
-            - UserRole=
           predicates:
-            - Path=/trade/v3/api-docs/**
+            - Path=/trade/v3/api-docs
+          filters:
+            - RewritePath=/trade/v3/api-docs, /v3/api-docs
         - id: trade-service
           uri: 'lb://TRADE-SERVICE'
           filters:
