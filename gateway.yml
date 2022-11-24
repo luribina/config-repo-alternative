@@ -9,13 +9,19 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user-service-login
+        - id: users-service-docs
+          uri: 'lb://USER-SERVICE'
+          predicates:
+            - Path=/users/v3/api-docs
+          filters:
+            - RewritePath=/users/v3/api-docs, /v3/api-docs
+        - id: users-service-login
           uri: 'lb://USER-SERVICE'
           filters:
             - UserRole=
           predicates:
             - Path=/users/login
-        - id: user-service-info
+        - id: users-service-info
           uri: 'lb://USER-SERVICE'
           filters:
             - UserRole=ROLE_ADMIN
