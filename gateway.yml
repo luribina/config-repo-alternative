@@ -27,6 +27,12 @@ spring:
             - UserRole=ROLE_ADMIN
           predicates:
             - Path=/users/**
+        - id: instrument-service-docs
+          uri: 'lb://INSTRUMENT-SERVICE'
+          predicates:
+            - Path=/instrument/v3/api-docs
+          filters:
+            - RewritePath=/instrument/v3/api-docs, /v3/api-docs
         - id: instrument-service
           uri: 'lb://INSTRUMENT-SERVICE'
           filters:
@@ -52,13 +58,19 @@ spring:
             - UserRole=ROLE_ADMIN, ROLE_MAINTAINER, ROLE_TRADER
           predicates:
             - Path=/market/**
+        - id: market-instrument-id-service-docs
+          uri: 'lb://MARKET-INSTRUMENT-ID-SERVICE'
+          predicates:
+            - Path=/marketInstrumentId/v3/api-docs
+          filters:
+            - RewritePath=/marketInstrumentId/v3/api-docs, /v3/api-docs
         - id: market-instrument-id-service
           uri: 'lb://MARKET-INSTRUMENT-ID-SERVICE'
           filters:
             - UserRole=ROLE_ADMIN, ROLE_MAINTAINER, ROLE_TRADER
           predicates:
             - Path=/marketInstrumentId/**
-        - id: market-service-docs
+        - id: trade-service-docs
           uri: 'lb://TRADE-SERVICE'
           predicates:
             - Path=/trade/v3/api-docs
@@ -76,6 +88,12 @@ spring:
             - UserRole=ROLE_ADMIN, ROLE_MAINTAINER, ROLE_TRADER
           predicates:
             - Path=/portfolio/**
+        - id: order-service-docs
+          uri: 'lb://ORDER-SERVICE'
+          predicates:
+            - Path=/order/v3/api-docs
+          filters:
+            - RewritePath=/order/v3/api-docs, /v3/api-docs
         - id: order-service
           uri: 'lb://ORDER-SERVICE'
           filters:
